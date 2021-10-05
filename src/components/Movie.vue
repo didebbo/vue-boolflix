@@ -23,7 +23,12 @@
       />
     </li>
     <li>
-      {{ `Vote Average: ${movie.vote_average}` }}
+      Vote Average:
+      <i
+        v-for="(item, index) in Math.floor(movie.vote_average / 2)"
+        :key="index"
+        class="fas fa-star"
+      ></i>
     </li>
   </ul>
 </template>
@@ -35,5 +40,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 </style>

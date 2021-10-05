@@ -23,7 +23,12 @@
       />
     </li>
     <li>
-      {{ `Vote Average: ${tv.vote_average}` }}
+      Vote Average:
+      <i
+        v-for="(item, index) in Math.floor(tv.vote_average / 2)"
+        :key="index"
+        class="fas fa-star"
+      ></i>
     </li>
   </ul>
 </template>

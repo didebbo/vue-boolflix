@@ -5,21 +5,23 @@
       :alt="movie.title"
     />
     <ul class="info">
-      <li>
+      <!-- <li>
         {{ `ID: ${movie.id}` }}
+      </li> -->
+      <li>
+        {{ `Titolo: ${movie.title}` }}
       </li>
       <li>
-        {{ `Title: ${movie.title}` }}
+        {{ `Titolo Originale: ${movie.original_title}` }}
       </li>
       <li>
-        {{ `Original Title: ${movie.original_title}` }}
-      </li>
-      <li>
-        Language:
-        <img
-          :src="`https://flagcdn.com/16x12/${movie.original_language}.png`"
-          :alt="movie.original_language"
-        />
+        <span> Language: </span>
+        <span class="flag">
+          <img
+            :src="`https://flagcdn.com/16x12/${movie.original_language}.png`"
+            :alt="movie.original_language"
+          />
+        </span>
       </li>
       <li>
         Vote Average:
@@ -59,6 +61,9 @@ export default {
   }
   ul {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
     top: 0;
     left: 0;
     width: 100%;
@@ -68,6 +73,19 @@ export default {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     outline: 0.1em solid white;
+    font-size: 1.1em;
+    font-family: monospace;
+    font-weight: bold;
+    > li {
+      padding: 0.2em 0;
+      display: flex;
+      align-items: center;
+      // border: 0.2em solid red;
+      .flag {
+        display: flex;
+        // border: 0.2em solid blue;
+      }
+    }
   }
 }
 </style>

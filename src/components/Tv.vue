@@ -1,6 +1,12 @@
 <template>
   <ul class="tv">
     <li>
+      <img
+        :src="`http://image.tmdb.org/t/p/w500/${tv.poster_path}`"
+        :alt="tv.name"
+      />
+    </li>
+    <li>
       {{ `ID: ${tv.id}` }}
     </li>
     <li>

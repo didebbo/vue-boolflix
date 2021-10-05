@@ -1,6 +1,12 @@
 <template>
   <ul class="movie">
     <li>
+      <img
+        :src="`http://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+        :alt="movie.title"
+      />
+    </li>
+    <li>
       {{ `ID: ${movie.id}` }}
     </li>
     <li>

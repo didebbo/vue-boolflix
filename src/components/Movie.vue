@@ -10,7 +10,11 @@
       {{ `Original Title: ${movie.original_title}` }}
     </li>
     <li>
-      {{ `Language: ${movie.original_language}` }}
+      Language:
+      <img
+        :src="`https://flagcdn.com/16x12/${movie.original_language}.png`"
+        :alt="movie.original_language"
+      />
     </li>
     <li>
       {{ `Vote Average: ${movie.vote_average}` }}

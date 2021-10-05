@@ -3,6 +3,7 @@
     <Header @getQuery="getQuery" />
     <main>
       <Movies :movies="movies" />
+      <Tvs :tvs="tvs" />
     </main>
   </div>
 </template>
@@ -11,12 +12,14 @@
 import axios from "axios";
 import Header from "./components/Header.vue";
 import Movies from "./components/Movies.vue";
+import Tvs from "./components/Tvs.vue";
 
 export default {
   name: "App",
   components: {
     Header,
     Movies,
+    Tvs,
   },
   data() {
     return {
@@ -56,7 +59,7 @@ export default {
         })
         .then((res) => {
           console.log(res.data.results);
-          // this.tvs = res.data.results;
+          this.tvs = res.data.results;
         });
     },
   },

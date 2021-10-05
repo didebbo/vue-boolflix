@@ -1,39 +1,17 @@
 <template>
   <div class="movies">
-    <Movie v-for="(movie, index) in movies" :key="index" :movie="movie" />
+    <h2 v-if="movies.length != 0">Movies:</h2>
+    <Item v-for="(movie, index) in movies" :key="index" :movie="movie" />
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import Movie from "./Movie.vue";
+import Item from "./Item.vue";
 export default {
   name: "Movies",
-  props: ["query"],
+  props: ["movies"],
   components: {
-    Movie,
-  },
-  data() {
-    return {
-      movies: [],
-    };
-  },
-  watch: {
-    query() {
-      console.log(this.query);
-      axios
-        .get("https://api.themoviedb.org/3/search/movie", {
-          params: {
-            api_key: "af0ba66c25483bbc937edba39186698d",
-            language: "it-IT",
-            query: this.query,
-          },
-        })
-        .then((res) => {
-          console.log(res.data.results);
-          this.movies = res.data.results;
-        });
-    },
+    Item,
   },
 };
 </script>

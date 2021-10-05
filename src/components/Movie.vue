@@ -4,7 +4,7 @@
       :src="`http://image.tmdb.org/t/p/w500/${movie.poster_path}`"
       :alt="movie.title"
     />
-    <ul v-if="false" class="info">
+    <ul class="info">
       <li>
         {{ `ID: ${movie.id}` }}
       </li>
@@ -43,13 +43,31 @@ export default {
 <style scoped lang="scss">
 .movie {
   // border: 0.2em solid orange;
+  position: relative;
   height: 100%;
   display: flex;
+  &:hover {
+    ul {
+      opacity: 1;
+    }
+  }
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+  ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    outline: 0.1em solid white;
   }
 }
 </style>

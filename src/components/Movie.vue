@@ -1,9 +1,6 @@
 <template>
   <div class="movie">
-    <img
-      :src="`http://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-      :alt="movie.title"
-    />
+    <img :src="`http://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="" />
     <ul class="info">
       <!-- <li>
         {{ `ID: ${movie.id}` }}
@@ -48,6 +45,7 @@ export default {
   position: relative;
   height: 100%;
   display: flex;
+  // overflow: hidden;
   &:hover {
     ul {
       opacity: 1;
@@ -58,6 +56,8 @@ export default {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border: 0.1em solid transparent;
+    background-color: gray;
   }
   ul {
     position: absolute;

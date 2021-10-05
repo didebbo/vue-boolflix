@@ -9,8 +9,14 @@
 import Movie from "./Movie.vue";
 export default {
   name: "Movies",
+  props: ["query"],
   components: {
     Movie,
+  },
+  watch: {
+    query() {
+      console.log(this.query);
+    },
   },
 };
 </script>

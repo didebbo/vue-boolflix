@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Header />
+    <Header @getQuery="getQuery" />
     <main>
       <h2>This is the Main</h2>
-      <Movies />
+      <Movies :query="query" />
     </main>
   </div>
 </template>
@@ -17,6 +17,16 @@ export default {
   components: {
     Header,
     Movies,
+  },
+  data() {
+    return {
+      query: "",
+    };
+  },
+  methods: {
+    getQuery(query) {
+      this.query = query;
+    },
   },
 };
 </script>

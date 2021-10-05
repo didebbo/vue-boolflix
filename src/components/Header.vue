@@ -1,12 +1,20 @@
 <template>
   <header>
-    <h1>This is the Header</h1>
+    <form>
+      <input type="text" v-model="query" />
+      <button @click.prevent="$emit('getQuery', query)">Search</button>
+    </form>
   </header>
 </template>
 
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      query: "",
+    };
+  },
 };
 </script>
 

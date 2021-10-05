@@ -1,14 +1,23 @@
 <template>
   <div id="app">
-    
+    <Header />
+    <main>
+      <h2>This is the Main</h2>
+      <Movies />
+    </main>
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Header from "./components/Header.vue";
+import Movies from "./components/Movies.vue";
 
 export default {
   name: "App",
-  components: {},
+  components: {
+    Header,
+    Movies,
+  },
 };
 </script>
 

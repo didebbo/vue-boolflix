@@ -3,7 +3,7 @@
     <Header @getQuery="getQuery" />
     <main>
       <Movies :query="query" />
-      <Tvs :query="query" />
+      <!-- <Tvs :query="query" /> -->
     </main>
   </div>
 </template>
@@ -11,14 +11,14 @@
 <script>
 import Header from "./components/Header.vue";
 import Movies from "./components/Movies.vue";
-import Tvs from "./components/Tvs.vue";
+// import Tvs from "./components/Tvs.vue";
 
 export default {
   name: "App",
   components: {
     Header,
     Movies,
-    Tvs,
+    // Tvs,
   },
   data() {
     return {
@@ -38,5 +38,10 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+main {
+  padding: 1em;
+  background-color: #434343;
 }
 </style>

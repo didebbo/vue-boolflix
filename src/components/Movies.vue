@@ -1,7 +1,11 @@
 <template>
   <div class="movies">
     <h2 v-if="movies.length != 0">Movies:</h2>
-    <Movie v-for="(movie, index) in movies" :key="index" :movie="movie" />
+    <div class="row">
+      <div class="col" v-for="(movie, index) in movies" :key="index">
+        <Movie :movie="movie" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -38,5 +42,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+.movies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // border: 0.2em solid red;
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    > .col {
+      // border: 0.2em solid blue;
+      padding: 1em;
+      width: (100% / 5);
+    }
+  }
+}
 </style>

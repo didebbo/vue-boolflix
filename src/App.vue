@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bootstrap/scss/bootstrap-grid";
+
 * {
   margin: 0;
   padding: 0;

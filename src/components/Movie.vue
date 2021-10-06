@@ -43,7 +43,6 @@ export default {
 
 <style scoped lang="scss">
 .movie {
-  // border: 0.2em solid orange;
   position: relative;
   height: 100%;
   display: flex;
@@ -56,7 +55,6 @@ export default {
   .poster {
     position: relative;
     display: flex;
-    // background-color: grey;
     width: 100%;
     height: 100%;
 
@@ -65,7 +63,6 @@ export default {
       height: 100%;
       object-fit: cover;
       object-position: center;
-      border: 0.1em solid transparent;
     }
   }
   ul {
@@ -80,7 +77,6 @@ export default {
     list-style: none;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    outline: 0.1em solid white;
     font-size: 1.1em;
     font-family: monospace;
     font-weight: bold;
@@ -92,10 +88,8 @@ export default {
       padding: 0.2em 0;
       display: flex;
       align-items: center;
-      // border: 0.2em solid red;
       .flag {
         display: flex;
-        // border: 0.2em solid blue;
         img {
           width: 1.5em;
           height: 1em;

@@ -1,9 +1,11 @@
 <template>
   <div class="movies">
     <!-- <h2 v-if="movies.length != 0">Movies:</h2> -->
-    <div class="row">
-      <div class="col" v-for="movie in movies" :key="movie.id">
-        <Movie :movie="movie" />
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5">
+        <div class="col" v-for="movie in movies" :key="movie.id">
+          <Movie :movie="movie" />
+        </div>
       </div>
     </div>
   </div>
@@ -49,12 +51,12 @@ export default {
   align-items: center;
   // border: 0.2em solid red;
   .row {
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
     > .col {
       // border: 0.2em solid blue;
       padding: 1em;
-      width: (100% / 5);
+      // width: (100% / 5);
     }
   }
 }

@@ -30,14 +30,48 @@
           class="fas fa-star"
         ></i>
       </li>
+      <li class="cast">{{ `Cast: ${cast}` }}</li>
     </ul>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Movie",
-  props: ["movie", "currentGenre"],
+  props: ["movie"],
+  data() {
+    return {
+      maxLengthCast: 5,
+      cast: [],
+    };
+  },
+  mounted() {
+    // // https://api.themoviedb.org/3//movie/379686/credits?api_key=af0ba66c25483bbc937edba39186698d&language=it-IT
+    axios
+      .get(`https://api.themoviedb.org/3/movie/${this.movie.id}/credits`, {
+        params: {
+          api_key: "af0ba66c25483bbc937edba39186698d",
+          language: "it-IT",
+        },
+      })
+      .then((res) => {
+        console.log(
+          "=========================================================="
+        );
+        for (
+          let i = 0;
+          i < this.maxLengthCast && i < res.data.cast.length;
+          i++
+        ) {
+          // this.cast.push(res.data.cast[i].name);
+          console.log(res.data.cast[i].name);
+          this.cast.push(res.data.cast[i].name);
+        }
+        // console.log(this.cast);
+      });
+  },
 };
 </script>
 
@@ -95,6 +129,10 @@ export default {
           height: 1em;
         }
       }
+    }
+    > .cast {
+      padding: 1em 0;
+      font-size: 0.8em;
     }
   }
 }

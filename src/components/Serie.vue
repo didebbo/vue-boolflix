@@ -8,10 +8,10 @@
     </div>
     <ul :class="{ show: serie.poster_path == null }">
       <li>
-        {{ `Titolo: ${serie.name}` }}
+        {{ `Title: ${serie.name}` }}
       </li>
       <li>
-        {{ `Titolo Originale: ${serie.original_name}` }}
+        {{ `Original Title: ${serie.original_name}` }}
       </li>
       <li>
         <span> Language: </span>

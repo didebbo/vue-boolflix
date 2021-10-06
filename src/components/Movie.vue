@@ -48,7 +48,6 @@ export default {
     };
   },
   mounted() {
-    // // https://api.themoviedb.org/3//movie/379686/credits?api_key=af0ba66c25483bbc937edba39186698d&language=it-IT
     axios
       .get(`https://api.themoviedb.org/3/movie/${this.movie.id}/credits`, {
         params: {
@@ -57,19 +56,14 @@ export default {
         },
       })
       .then((res) => {
-        console.log(
-          "=========================================================="
-        );
         for (
           let i = 0;
           i < this.maxLengthCast && i < res.data.cast.length;
           i++
         ) {
-          // this.cast.push(res.data.cast[i].name);
-          console.log(res.data.cast[i].name);
+          // console.log(res.data.cast[i].name);
           this.cast.push(res.data.cast[i].name);
         }
-        // console.log(this.cast);
       });
   },
 };

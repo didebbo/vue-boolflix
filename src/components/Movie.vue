@@ -36,6 +36,7 @@
         <a :href="`https://www.youtube.com/watch?v=${trailer}`" target="_blank"
           >Trailer</a
         >
+        <!-- <button @clicl="showtrailerPlayer = true">Trailer</button> -->
       </li>
     </ul>
   </div>
@@ -96,7 +97,6 @@ export default {
         });
     },
     getVideo() {
-      // https://api.themoviedb.org/3/movie/${this.movie.id}/videos
       axios
         .get(`https://api.themoviedb.org/3/movie/${this.movie.id}/videos`, {
           params: {

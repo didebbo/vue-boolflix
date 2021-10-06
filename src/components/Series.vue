@@ -1,11 +1,17 @@
 <template>
   <div class="series">
     <div class="fluid-container" v-if="series.length != 0">
-      <div class="title">
+      <div class="header">
         <h2>Series</h2>
+        <select v-model="currentGenre">
+          <option :value="null" selected>All</option>
+          <option v-for="genre in genres" :key="genre.id" :value="genre.id">
+            {{ genre.name }}
+          </option>
+        </select>
       </div>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5">
-        <div class="col" v-for="serie in series" :key="serie.id">
+        <div class="col" v-for="serie in filteredSeries" :key="serie.id">
           <Serie :serie="serie" />
         </div>
       </div>
@@ -24,7 +30,10 @@ export default {
   },
   data() {
     return {
+      displaySeriesSection: false,
       series: [],
+      genres: [],
+      currentGenre: null,
     };
   },
   watch: {
@@ -40,7 +49,34 @@ export default {
         .then((res) => {
           // console.log(res.data.results);
           this.series = res.data.results;
+          this.getDisplaySeriesSection();
         });
+    },
+  },
+  methods: {
+    getDisplaySeriesSection() {
+      this.displaySeriesSection = this.series.length != 0;
+      axios
+        .get("https://api.themoviedb.org/3/genre/tv/list", {
+          params: {
+            api_key: "af0ba66c25483bbc937edba39186698d",
+            language: "it-IT",
+          },
+        })
+        .then((res) => {
+          // console.log(res.data.genres);
+          this.genres = res.data.genres;
+        });
+    },
+  },
+  computed: {
+    filteredSeries() {
+      const filter = this.series.filter((serie) => {
+        // console.log(this.currentGenre);
+        if (this.currentGenre == null) return true;
+        return serie.genre_ids.includes(this.currentGenre);
+      });
+      return filter;
     },
   },
 };
@@ -49,7 +85,9 @@ export default {
 <style scoped lang="scss">
 .series {
   .fluid-container {
-    .title {
+    .header {
+      display: flex;
+      justify-content: space-between;
       padding: 0.5em;
       color: lightgray;
       background-color: gray;

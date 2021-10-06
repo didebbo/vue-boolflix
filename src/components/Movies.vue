@@ -1,6 +1,6 @@
 <template>
   <div class="movies">
-    <div class="fluid-container" v-if="displayMovieSection">
+    <div class="fluid-container" v-if="displayMoviesSection">
       <div class="header">
         <h2>Movies</h2>
         <select v-model="currentGenre">
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      displayMovieSection: false,
+      displayMoviesSection: false,
       movies: [],
       genres: [],
       currentGenre: null,
@@ -49,13 +49,13 @@ export default {
         .then((res) => {
           // console.log(res.data.results);
           this.movies = res.data.results;
-          this.getDisplayMovieSection();
+          this.getDisplayMoviesSection();
         });
     },
   },
   methods: {
-    getDisplayMovieSection() {
-      this.displayMovieSection = this.movies.length != 0;
+    getDisplayMoviesSection() {
+      this.displayMoviesSection = this.movies.length != 0;
       axios
         .get("https://api.themoviedb.org/3/genre/movie/list", {
           params: {

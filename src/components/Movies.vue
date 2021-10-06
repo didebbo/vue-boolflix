@@ -38,22 +38,30 @@ export default {
   },
   watch: {
     query() {
-      axios
-        .get("https://api.themoviedb.org/3/search/movie", {
-          params: {
-            api_key: "af0ba66c25483bbc937edba39186698d",
-            language: "it-IT",
-            query: this.query,
-          },
-        })
-        .then((res) => {
-          // console.log(res.data.results);
-          this.movies = res.data.results;
-          this.getDisplayMoviesSection();
-        });
+      console.log("Query: " + this.query);
+      this.getMovies(this.query);
     },
   },
+  created() {
+    this.getMovies();
+  },
   methods: {
+    getMovies(query) {
+      const url =
+        query != null && query != ""
+          ? "https://api.themoviedb.org/3/search/movie"
+          : "https://api.themoviedb.org/3/movie/popular";
+      const params = {
+        api_key: "af0ba66c25483bbc937edba39186698d",
+        language: "it-IT",
+      };
+      if (query != null) params.query = query;
+      axios.get(url, { params }).then((res) => {
+        console.log(res.data.results);
+        this.movies = res.data.results;
+        this.getDisplayMoviesSection();
+      });
+    },
     getDisplayMoviesSection() {
       this.displayMoviesSection = this.movies.length != 0;
       axios

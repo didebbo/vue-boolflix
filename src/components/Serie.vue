@@ -30,14 +30,65 @@
           class="fas fa-star"
         ></i>
       </li>
+      <li class="genres">{{ `Genres:${genres}` }}</li>
+      <li class="cast">{{ `Cast:${cast}` }}</li>
     </ul>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Serie",
   props: ["serie"],
+  data() {
+    return {
+      maxLengthCast: 5,
+      cast: [],
+      genres: [],
+    };
+  },
+  mounted() {
+    this.getCast();
+    this.getGenres();
+  },
+  methods: {
+    getCast() {
+      axios
+        .get(`https://api.themoviedb.org/3/tv/${this.serie.id}/credits`, {
+          params: {
+            api_key: "af0ba66c25483bbc937edba39186698d",
+            language: "it-IT",
+          },
+        })
+        .then((res) => {
+          for (
+            let i = 0;
+            i < this.maxLengthCast && i < res.data.cast.length;
+            i++
+          ) {
+            // console.log(res.data.cast[i].name);
+            this.cast.push(" " + res.data.cast[i].name);
+          }
+        });
+    },
+    getGenres() {
+      axios
+        .get(`https://api.themoviedb.org/3/tv/${this.serie.id}`, {
+          params: {
+            api_key: "af0ba66c25483bbc937edba39186698d",
+            language: "it-IT",
+          },
+        })
+        .then((res) => {
+          for (let i = 0; i < res.data.genres.length; i++) {
+            // console.log(res.data.genres[i].name);
+            this.genres.push(" " + res.data.genres[i].name);
+          }
+        });
+    },
+  },
 };
 </script>
 
@@ -95,6 +146,11 @@ export default {
           height: 1em;
         }
       }
+    }
+    .genres,
+    .cast {
+      padding: 1em 0;
+      font-size: 0.8em;
     }
   }
 }

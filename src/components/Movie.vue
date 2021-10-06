@@ -1,10 +1,12 @@
 <template>
   <div class="movie">
-    <img :src="`http://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="" />
-    <ul class="info">
-      <!-- <li>
-        {{ `ID: ${movie.id}` }}
-      </li> -->
+    <div class="poster">
+      <img
+        :src="`http://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+        alt=""
+      />
+    </div>
+    <ul :class="{ show: movie.poster_path == null }">
       <li>
         {{ `Titolo: ${movie.title}` }}
       </li>
@@ -15,7 +17,7 @@
         <span> Language: </span>
         <span class="flag">
           <img
-            :src="`https://flagcdn.com/16x12/${movie.original_language}.png`"
+            :src="`https://www.unknown.nu/flags/images/${movie.original_language}-100`"
             :alt="movie.original_language"
           />
         </span>
@@ -45,19 +47,26 @@ export default {
   position: relative;
   height: 100%;
   display: flex;
-  // overflow: hidden;
+  overflow: hidden;
   &:hover {
     ul {
       opacity: 1;
     }
   }
-  img {
+  .poster {
+    position: relative;
+    display: flex;
+    // background-color: grey;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border: 0.1em solid transparent;
-    background-color: gray;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border: 0.1em solid transparent;
+    }
   }
   ul {
     position: absolute;
@@ -68,7 +77,6 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
     list-style: none;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
@@ -76,6 +84,10 @@ export default {
     font-size: 1.1em;
     font-family: monospace;
     font-weight: bold;
+    opacity: 0;
+    &.show {
+      opacity: 1;
+    }
     > li {
       padding: 0.2em 0;
       display: flex;
@@ -84,6 +96,10 @@ export default {
       .flag {
         display: flex;
         // border: 0.2em solid blue;
+        img {
+          width: 1.5em;
+          height: 1em;
+        }
       }
     }
   }

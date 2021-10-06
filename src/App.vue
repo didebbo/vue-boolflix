@@ -40,8 +40,11 @@ export default {
   box-sizing: border-box;
 }
 
+body {
+  background-color: #434343;
+}
+
 main {
   padding: 1em;
-  background-color: #434343;
 }
 </style>

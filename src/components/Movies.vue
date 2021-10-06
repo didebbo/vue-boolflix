@@ -2,7 +2,7 @@
   <div class="movies">
     <!-- <h2 v-if="movies.length != 0">Movies:</h2> -->
     <div class="row">
-      <div class="col" v-for="(movie, index) in movies" :key="index">
+      <div class="col" v-for="movie in movies" :key="movie.id">
         <Movie :movie="movie" />
       </div>
     </div>
@@ -34,7 +34,7 @@ export default {
           },
         })
         .then((res) => {
-          // console.log(res.data.results);
+          console.log(res.data.results);
           this.movies = res.data.results;
         });
     },

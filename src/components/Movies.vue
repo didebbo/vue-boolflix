@@ -1,7 +1,7 @@
 <template>
   <div class="movies">
     <!-- <h2 v-if="movies.length != 0">Movies:</h2> -->
-    <div class="container">
+    <div class="flud-container">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5">
         <div class="col" v-for="movie in movies" :key="movie.id">
           <Movie :movie="movie" />

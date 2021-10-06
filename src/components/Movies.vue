@@ -1,7 +1,9 @@
 <template>
   <div class="movies">
-    <!-- <h2 v-if="movies.length != 0">Movies:</h2> -->
-    <div class="flud-container">
+    <div class="fluid-container" v-if="movies.length != 0">
+      <div class="title">
+        <h2>Movies</h2>
+      </div>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5">
         <div class="col" v-for="movie in movies" :key="movie.id">
           <Movie :movie="movie" />
@@ -47,16 +49,16 @@ export default {
 <style scoped lang="scss">
 .movies {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  // border: 0.2em solid red;
-  .row {
-    // display: flex;
-    // flex-wrap: wrap;
-    > .col {
-      // border: 0.2em solid blue;
-      padding: 1em;
-      // width: (100% / 5);
+  .fluid-container {
+    .title {
+      padding: 0.5em;
+      color: lightgray;
+      background-color: gray;
+    }
+    .row {
+      > .col {
+        padding: 1em;
+      }
     }
   }
 }

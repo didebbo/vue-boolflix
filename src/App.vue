@@ -44,6 +44,7 @@ export default {
 
 body {
   background-color: #434343;
+  font-family: sans-serif;
 }
 
 main {

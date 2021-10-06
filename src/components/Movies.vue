@@ -38,7 +38,6 @@ export default {
   },
   watch: {
     query() {
-      console.log("Query: " + this.query);
       this.getMovies(this.query);
     },
   },
@@ -55,9 +54,9 @@ export default {
         api_key: "af0ba66c25483bbc937edba39186698d",
         language: "it-IT",
       };
-      if (query != null) params.query = query;
+      if (query != null && query != "") params.query = query;
       axios.get(url, { params }).then((res) => {
-        console.log(res.data.results);
+        // console.log(res.data.results);
         this.movies = res.data.results;
         this.getDisplayMoviesSection();
       });

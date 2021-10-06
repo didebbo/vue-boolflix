@@ -38,22 +38,29 @@ export default {
   },
   watch: {
     query() {
-      axios
-        .get("https://api.themoviedb.org/3/search/tv", {
-          params: {
-            api_key: "af0ba66c25483bbc937edba39186698d",
-            language: "it-IT",
-            query: this.query,
-          },
-        })
-        .then((res) => {
-          // console.log(res.data.results);
-          this.series = res.data.results;
-          this.getDisplaySeriesSection();
-        });
+      this.getSeries(this.query);
     },
   },
+  created() {
+    this.getSeries();
+  },
   methods: {
+    getSeries(query) {
+      const url =
+        query != null && query != ""
+          ? "https://api.themoviedb.org/3/search/tv"
+          : "https://api.themoviedb.org/3/tv/popular";
+      const params = {
+        api_key: "af0ba66c25483bbc937edba39186698d",
+        language: "it-IT",
+      };
+      if (query != null && query != "") params.query = query;
+      axios.get(url, { params }).then((res) => {
+        // console.log(res.data.results);
+        this.series = res.data.results;
+        this.getDisplaySeriesSection();
+      });
+    },
     getDisplaySeriesSection() {
       this.displaySeriesSection = this.series.length != 0;
       axios

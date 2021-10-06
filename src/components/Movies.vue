@@ -1,11 +1,17 @@
 <template>
   <div class="movies">
-    <div class="fluid-container" v-if="movies.length != 0">
-      <div class="title">
+    <div class="fluid-container" v-if="displayMovieSection">
+      <div class="header">
         <h2>Movies</h2>
+        <select v-model="currentGenre">
+          <option :value="null" selected>All</option>
+          <option v-for="genre in genres" :key="genre.id" :value="genre.id">
+            {{ genre.name }}
+          </option>
+        </select>
       </div>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5">
-        <div class="col" v-for="movie in movies" :key="movie.id">
+        <div class="col" v-for="movie in filteredMovies" :key="movie.id">
           <Movie :movie="movie" />
         </div>
       </div>
@@ -24,7 +30,10 @@ export default {
   },
   data() {
     return {
+      displayMovieSection: false,
       movies: [],
+      genres: [],
+      currentGenre: null,
     };
   },
   watch: {
@@ -38,9 +47,36 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data.results);
+          // console.log(res.data.results);
           this.movies = res.data.results;
+          this.getDisplayMovieSection();
         });
+    },
+  },
+  methods: {
+    getDisplayMovieSection() {
+      this.displayMovieSection = this.movies.length != 0;
+      axios
+        .get("https://api.themoviedb.org/3/genre/movie/list", {
+          params: {
+            api_key: "af0ba66c25483bbc937edba39186698d",
+            language: "it-IT",
+          },
+        })
+        .then((res) => {
+          // console.log(res.data.genres);
+          this.genres = res.data.genres;
+        });
+    },
+  },
+  computed: {
+    filteredMovies() {
+      const filter = this.movies.filter((movie) => {
+        // console.log(this.currentGenre);
+        if (this.currentGenre == null) return true;
+        return movie.genre_ids.includes(this.currentGenre);
+      });
+      return filter;
     },
   },
 };
@@ -49,7 +85,9 @@ export default {
 <style scoped lang="scss">
 .movies {
   .fluid-container {
-    .title {
+    .header {
+      display: flex;
+      justify-content: space-between;
       padding: 0.5em;
       color: lightgray;
       background-color: gray;

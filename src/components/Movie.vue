@@ -37,7 +37,7 @@
 <script>
 export default {
   name: "Movie",
-  props: ["movie"],
+  props: ["movie", "currentGenre"],
 };
 </script>
 

@@ -5,10 +5,10 @@
         <h1>Boolflix</h1>
       </div>
       <form>
-        <div>
+        <div class="query">
           <input type="text" v-model="query" />
         </div>
-        <div>
+        <div class="submit">
           <button @click.prevent="$emit('getQuery', query)">Search</button>
         </div>
       </form>

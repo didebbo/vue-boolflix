@@ -1,12 +1,12 @@
 <template>
-  <div class="movies">
-    <div class="fluid-container" v-if="movies.length != 0">
+  <div class="series">
+    <div class="fluid-container" v-if="series.length != 0">
       <div class="title">
-        <h2>Movies</h2>
+        <h2>Series</h2>
       </div>
       <div class="row row-cols-1 row-cols-md-4 row-cols-lg-5">
-        <div class="col" v-for="movie in movies" :key="movie.id">
-          <Movie :movie="movie" />
+        <div class="col" v-for="serie in series" :key="serie.id">
+          <Serie :serie="serie" />
         </div>
       </div>
     </div>
@@ -15,22 +15,22 @@
 
 <script>
 import axios from "axios";
-import Movie from "./Movie.vue";
+import Serie from "./Serie.vue";
 export default {
-  name: "Movies",
+  name: "Series",
   props: ["query"],
   components: {
-    Movie,
+    Serie,
   },
   data() {
     return {
-      movies: [],
+      series: [],
     };
   },
   watch: {
     query() {
       axios
-        .get("https://api.themoviedb.org/3/search/movie", {
+        .get("https://api.themoviedb.org/3/search/tv", {
           params: {
             api_key: "af0ba66c25483bbc937edba39186698d",
             language: "it-IT",
@@ -38,8 +38,8 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data.results);
-          this.movies = res.data.results;
+          // console.log(res.data.results);
+          this.series = res.data.results;
         });
     },
   },
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.movies {
+.series {
   display: flex;
   .fluid-container {
     .title {

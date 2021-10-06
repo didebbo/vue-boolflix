@@ -48,7 +48,6 @@ export default {
 
 <style scoped lang="scss">
 .series {
-  display: flex;
   .fluid-container {
     .title {
       padding: 0.5em;

@@ -32,6 +32,11 @@
       </li>
       <li class="genres">{{ `Genres:${genres}` }}</li>
       <li class="cast">{{ `Cast:${cast}` }}</li>
+      <li class="trailer" v-if="trailer">
+        <a :href="`https://www.youtube.com/watch?v=${trailer}`" target="_blank"
+          >Trailer</a
+        >
+      </li>
     </ul>
   </div>
 </template>
@@ -47,11 +52,13 @@ export default {
       maxLengthCast: 5,
       cast: [],
       genres: [],
+      trailer: null,
     };
   },
   mounted() {
     this.getCast();
     this.getGenres();
+    this.getVideo();
   },
   methods: {
     getCast() {
@@ -85,6 +92,21 @@ export default {
           for (let i = 0; i < res.data.genres.length; i++) {
             // console.log(res.data.genres[i].name);
             this.genres.push(" " + res.data.genres[i].name);
+          }
+        });
+    },
+    getVideo() {
+      // https://api.themoviedb.org/3/movie/${this.movie.id}/videos
+      axios
+        .get(`https://api.themoviedb.org/3/movie/${this.movie.id}/videos`, {
+          params: {
+            api_key: "af0ba66c25483bbc937edba39186698d",
+            language: "it-IT",
+          },
+        })
+        .then((res) => {
+          if (res.data.results.length > 0) {
+            this.trailer = res.data.results[0].key;
           }
         });
     },
@@ -128,7 +150,7 @@ export default {
     list-style: none;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    font-size: 1.1em;
+    // font-size: 1.1em;
     font-family: monospace;
     font-weight: bold;
     opacity: 0;
@@ -150,7 +172,19 @@ export default {
     .genres,
     .cast {
       padding: 1em 0;
-      font-size: 0.8em;
+      font-size: 0.9em;
+    }
+    .trailer {
+      display: flex;
+      justify-content: center;
+      margin-top: auto;
+      a {
+        padding: 0.5em 1em;
+        background-color: white;
+        text-decoration: none;
+        border-radius: 0.2em;
+        color: black;
+      }
     }
   }
 }

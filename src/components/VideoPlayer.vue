@@ -34,8 +34,6 @@ export default {
   height: 100vh;
   top: 0;
   left: 0;
-  // transform: translate(-50%, -50%);
-  // background-color: rgba(0, 0, 0, 0.4);
   z-index: 2;
   display: flex;
   justify-content: center;
@@ -52,8 +50,8 @@ export default {
 
   .position {
     position: relative;
-    width: 560px;
-    height: 315px;
+    width: 50vw;
+    height: 50vmin;
 
     i {
       position: absolute;

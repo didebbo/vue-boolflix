@@ -12,7 +12,7 @@
       </div>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5">
         <div class="col" v-for="movie in filteredMovies" :key="movie.id">
-          <Movie :movie="movie" />
+          <Movie :movie="movie" @playVideo="playVideo" />
         </div>
       </div>
     </div>
@@ -74,6 +74,10 @@ export default {
           // console.log(res.data.genres);
           this.genres = res.data.genres;
         });
+    },
+    playVideo(trailer) {
+      this.$emit("playVideo", trailer);
+      // console.log(trailer);
     },
   },
   computed: {

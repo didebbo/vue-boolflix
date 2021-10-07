@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <Header @getQuery="getQuery" />
-    <VideoPlayer />
+    <VideoPlayer :trailer="trailer" />
     <main>
-      <Movies :query="query" />
+      <Movies :query="query" @playVideo="loadVideo" />
       <Series :query="query" />
     </main>
   </div>
@@ -26,11 +26,15 @@ export default {
   data() {
     return {
       query: "",
+      trailer: null,
     };
   },
   methods: {
     getQuery(query) {
       this.query = query;
+    },
+    loadVideo(trailer) {
+      this.trailer = trailer;
     },
   },
 };

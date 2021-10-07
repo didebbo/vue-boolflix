@@ -1,15 +1,8 @@
 <template>
   <div v-if="showPlayer" class="videoPlayer">
     <div class="position">
-      <i class="fas fa-times-circle" @click="showPlayer = false"></i>
-      <iframe
-        src="https://www.youtube.com/embed/bKP8MrkN5ss"
-        title="YouTube video player"
-        frameborder="0"
-        allowfullscreen
-      >
-        <!-- allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" -->
-      </iframe>
+      <i class="fas fa-times-circle" @click="closePlayer"></i>
+      <iframe :src="`https://www.youtube.com/embed/${trailer}`"> </iframe>
     </div>
   </div>
 </template>
@@ -17,11 +10,22 @@
 <script>
 export default {
   name: "VideoPlayer",
-  //   props: ["src"],
+  props: ["trailer"],
   data() {
     return {
       showPlayer: false,
     };
+  },
+  watch: {
+    trailer() {
+      this.showPlayer = true;
+      // console.log(this.trailer);
+    },
+  },
+  methods: {
+    closePlayer() {
+      this.showPlayer = false;
+    },
   },
 };
 </script>
@@ -58,6 +62,7 @@ export default {
     iframe {
       width: 100%;
       height: 100%;
+      border: 0;
     }
   }
 }

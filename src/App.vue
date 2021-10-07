@@ -4,7 +4,7 @@
     <VideoPlayer :trailer="trailer" />
     <main>
       <Movies :query="query" @playVideo="loadVideo" />
-      <Series :query="query" />
+      <Series :query="query" @playVideo="loadVideo" />
     </main>
   </div>
 </template>

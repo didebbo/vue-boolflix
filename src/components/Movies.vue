@@ -77,7 +77,6 @@ export default {
     },
     playVideo(trailer) {
       this.$emit("playVideo", trailer);
-      // console.log(trailer);
     },
   },
   computed: {

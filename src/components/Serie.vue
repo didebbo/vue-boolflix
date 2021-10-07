@@ -33,9 +33,7 @@
       <li class="genres">{{ `Genres:${genres}` }}</li>
       <li class="cast">{{ `Cast:${cast}` }}</li>
       <li class="trailer" v-if="trailer">
-        <a :href="`https://www.youtube.com/watch?v=${trailer}`" target="_blank"
-          >Trailer</a
-        >
+        <button @click="$emit('playVideo', trailer)">Trailer</button>
       </li>
     </ul>
   </div>
@@ -177,12 +175,8 @@ export default {
       display: flex;
       justify-content: center;
       margin-top: auto;
-      a {
-        padding: 0.5em 1em;
-        background-color: white;
-        text-decoration: none;
-        border-radius: 0.2em;
-        color: black;
+      button {
+        padding: 0.2em 0.5em;
       }
     }
   }

@@ -1,5 +1,6 @@
 <template>
   <div v-if="Player.show" class="videoPlayer">
+    <div class="outside" @click="closePlayer"></div>
     <div class="position">
       <i class="fas fa-times-circle" @click="closePlayer"></i>
       <iframe :src="`https://www.youtube.com/embed/${trailer}`"> </iframe>
@@ -34,11 +35,20 @@ export default {
   top: 0;
   left: 0;
   // transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.4);
+  // background-color: rgba(0, 0, 0, 0.4);
   z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .outside {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 
   .position {
     position: relative;
@@ -50,7 +60,6 @@ export default {
       top: -0.5em;
       right: -0.5em;
       color: red;
-      z-index: 3;
       font-size: 2em;
       cursor: pointer;
     }

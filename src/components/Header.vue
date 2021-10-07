@@ -2,7 +2,12 @@
   <header>
     <div class="fluid-container">
       <div class="logo">
-        <h1>Boolflix</h1>
+        <a href="#"
+          ><img
+            src="https://fontmeme.com/permalink/211007/bc001285b4acd0b4828e3939d958e947.png"
+            alt="netflix-font"
+            border="0"
+        /></a>
       </div>
       <form>
         <div class="query">
@@ -39,6 +44,9 @@ header {
     .logo {
       color: red;
       font-size: 0.8em;
+      img {
+        height: 2.5em;
+      }
     }
 
     form {

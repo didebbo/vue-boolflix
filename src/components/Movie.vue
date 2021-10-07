@@ -41,6 +41,7 @@
 
 <script>
 import axios from "axios";
+import Player from "../observable/Player";
 
 export default {
   name: "Movie",
@@ -51,6 +52,7 @@ export default {
       cast: [],
       genres: [],
       trailer: null,
+      Player,
     };
   },
   mounted() {
@@ -109,6 +111,7 @@ export default {
     },
     playVideo() {
       this.$emit("playVideo", this.trailer);
+      this.Player.show = true;
     },
   },
 };

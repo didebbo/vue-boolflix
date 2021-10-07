@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showPlayer" class="videoPlayer">
+  <div v-if="Player.show" class="videoPlayer">
     <div class="position">
       <i class="fas fa-times-circle" @click="closePlayer"></i>
       <iframe :src="`https://www.youtube.com/embed/${trailer}`"> </iframe>
@@ -8,22 +8,19 @@
 </template>
 
 <script>
+import Player from "../observable/Player";
+
 export default {
   name: "VideoPlayer",
   props: ["trailer"],
   data() {
     return {
-      showPlayer: false,
+      Player,
     };
-  },
-  watch: {
-    trailer() {
-      this.showPlayer = true;
-    },
   },
   methods: {
     closePlayer() {
-      this.showPlayer = false;
+      this.Player.show = false;
     },
   },
 };

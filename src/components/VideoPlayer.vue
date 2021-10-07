@@ -69,4 +69,13 @@ export default {
     }
   }
 }
+
+@media screen and (orientation: portrait) {
+  .videoPlayer {
+    .position {
+      width: 90vw;
+      height: 90vh;
+    }
+  }
+}
 </style>

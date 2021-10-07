@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header @getQuery="getQuery" />
+    <VideoPlayer />
     <main>
       <Movies :query="query" />
       <Series :query="query" />
@@ -12,6 +13,7 @@
 import Header from "./components/Header.vue";
 import Movies from "./components/Movies.vue";
 import Series from "./components/Series.vue";
+import VideoPlayer from "./components/VideoPlayer.vue";
 
 export default {
   name: "App",
@@ -19,6 +21,7 @@ export default {
     Header,
     Movies,
     Series,
+    VideoPlayer,
   },
   data() {
     return {

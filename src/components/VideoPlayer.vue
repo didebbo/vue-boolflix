@@ -73,8 +73,8 @@ export default {
 @media screen and (orientation: portrait) {
   .videoPlayer {
     .position {
-      width: 90vw;
-      height: 90vh;
+      width: 80vw;
+      height: 80vh;
     }
   }
 }

@@ -36,7 +36,6 @@
         <a :href="`https://www.youtube.com/watch?v=${trailer}`" target="_blank"
           >Trailer</a
         >
-        <!-- <button @clicl="showtrailerPlayer = true">Trailer</button> -->
       </li>
     </ul>
   </div>

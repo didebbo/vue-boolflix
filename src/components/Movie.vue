@@ -139,7 +139,7 @@ export default {
 
     img {
       width: 100%;
-      height: 100%;
+      height: 20em;
       object-fit: cover;
       object-position: center;
     }

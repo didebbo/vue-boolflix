@@ -23,12 +23,15 @@
         </span>
       </li>
       <li>
-        Vote Average:
-        <i
-          v-for="(item, index) in Math.floor(movie.vote_average / 2)"
-          :key="index"
-          class="fas fa-star"
-        ></i>
+        <span> Vote Average: </span>
+        <template v-for="(item, index) in 5">
+          <i
+            v-if="index <= Math.floor(movie.vote_average / 2)"
+            class="fas fa-star"
+            :key="index"
+          ></i>
+          <i v-else class="far fa-star" :key="index"></i>
+        </template>
       </li>
       <li class="genres">{{ `Genres:${genres}` }}</li>
       <li class="cast">{{ `Cast:${cast}` }}</li>
@@ -153,7 +156,6 @@ export default {
     list-style: none;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    // font-size: 1.1em;
     font-family: monospace;
     font-weight: bold;
     opacity: 0;
@@ -164,6 +166,9 @@ export default {
       padding: 0.2em 0;
       display: flex;
       align-items: center;
+      i {
+        font-size: 0.8em;
+      }
       .flag {
         display: flex;
         img {

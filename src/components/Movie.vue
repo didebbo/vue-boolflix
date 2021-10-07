@@ -33,7 +33,7 @@
       <li class="genres">{{ `Genres:${genres}` }}</li>
       <li class="cast">{{ `Cast:${cast}` }}</li>
       <li class="trailer" v-if="trailer">
-        <button @click="$emit('playVideo', trailer)">Trailer</button>
+        <button @click="playVideo">Trailer</button>
       </li>
     </ul>
   </div>
@@ -106,6 +106,9 @@ export default {
             this.trailer = res.data.results[0].key;
           }
         });
+    },
+    playVideo() {
+      this.$emit("playVideo", this.trailer);
     },
   },
 };

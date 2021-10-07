@@ -19,7 +19,6 @@ export default {
   watch: {
     trailer() {
       this.showPlayer = true;
-      // console.log(this.trailer);
     },
   },
   methods: {

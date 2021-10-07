@@ -51,7 +51,7 @@ export default {
   .position {
     position: relative;
     width: 50vw;
-    height: 50vmin;
+    height: 50vh;
 
     i {
       position: absolute;
